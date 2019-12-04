@@ -2,7 +2,7 @@ Package: ezCutoffs
 Date: 2019-11-09
 Type: Package
 Title: Fit Measure Cutoffs in SEM
-Version: 1.0.0
+Version: 1.0.1
 Depends: R (>= 2.15.1)
 Authors@R: c(person(given = "Bjarne", family = "Schmalbach",
                     comment = c(ORCID = "0000-0001-6853-412X"),
@@ -23,6 +23,6 @@ Author: Bjarne Schmalbach [aut, cre] (<https://orcid.org/0000-0001-6853-412X>),
   Julien Patrick Irmer [aut],
   Martin Schultze [aut]
 NeedsCompilation: no
-Packaged: 2019-11-15 15:25:20 UTC; q7
+Packaged: 2019-12-04 10:31:26 UTC; scm14b
 Repository: CRAN
-Date/Publication: 2019-11-15 17:10:05 UTC
+Date/Publication: 2019-12-04 16:00:05 UTC

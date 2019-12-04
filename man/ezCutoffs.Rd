@@ -6,16 +6,16 @@
 \usage{
 ezCutoffs(model = NULL, data = NULL, n_obs = NULL, n_rep = 1000,
   fit_indices = c("chisq", "cfi", "tli", "rmsea", "srmr"),
-  alpha_level = 0.05, normality = "assumed",
-  missing_data = "complete", bootstrapped_ci = FALSE, n_boot = 1000,
-  boot_alpha = 0.05, boot_internal = FALSE, n_cores = NULL, ...)
+  alpha_level = 0.05, normality = "assumed", missing_data = FALSE,
+  bootstrapped_ci = FALSE, n_boot = 1000, boot_alpha = 0.05,
+  boot_internal = FALSE, n_cores = NULL, ...)
 }
 \arguments{
 \item{model}{\link[lavaan]{lavaan}-style Syntax of a user-specified model.}
 
 \item{data}{A data frame containing the variables specified in model.}
 
-\item{n_obs}{Specifies the number of observations. Only needed if no data frame is given. Can be given as a numeric vector representing the exact group sizes in multigroup analyses.}
+\item{n_obs}{Specifies the number of observations. Only needed if no data frame is given. Can be given as a numeric vector representing the exact group sizes in multigroup analyses. In this case, the grouping variable needs to be called \code{"group"}.}
 
 \item{n_rep}{Number of replications.}
 
@@ -25,7 +25,7 @@ ezCutoffs(model = NULL, data = NULL, n_obs = NULL, n_rep = 1000,
 
 \item{normality}{Specify distributional assumptions for the simulated data: Either \code{"assumed"} for normal distribution, or \code{"empirical"} for distributions based on the skewness and kurtosis values of the empirical data.}
 
-\item{missing_data}{Specify handling of missing values: Either \code{"complete"} to generate complete data sets, or \code{"missing"} to generate data with the same number of missing values on the observed variables as in the empirical data. \code{"missing"} should only be run using \code{"MLR"} estimation with \code{"missing = "FIML""}. Other arguments may lead to errors.}
+\item{missing_data}{Specify handling of missing values: Either \code{FALSE} to generate complete data sets, or \code{TRUE} to generate data with the same number of missing values on the observed variables as in the empirical data.}
 
 \item{bootstrapped_ci}{Specify whether a boostrapped confidence interval for the empirical model fit statistics should be drawn; default = FALSE.}
 
@@ -49,7 +49,7 @@ Calculate cutoff values for model fit measures used in structural equation model
 \details{
 \code{model} is expected in standard lavaan nomenclature. The typical pre-multiplication mechanism is supported, with the exception of vectors (see Examples). Multigroup models should instead be specified using the \code{group} argument. \cr\cr
 If \code{data} is not specified, the program will generate data based on the given \code{model} and \code{n_obs}. A numeric vector would signify multiple groups and \code{group} needs to be set to "group" in this case. Otherwise, \code{n_obs} is disregarded. \cr\cr
-\code{missing_data = "missing"} assumes that the data is missing completely at random. That, is missings should not be distributed unevenly in multigroup models, for instance.\cr\cr
+\code{missing_data = TRUE} assumes that the data is missing completely at random. That, is missings should not be distributed unevenly in multigroup models, for instance.\cr\cr
 \code{bootstrapped_ci = "TRUE"} Returns a nonparametric bootstrap confidence interval that quantifies the uncertainty within a data set with regard to the empirical fit indices. Larger sample sizes should, under ideal circumstances, have smaller confidence intervals. For more information see, e.g., Efron (1981; 1987). Bootstrapping uses the \code{library(boot)} and (if available) several CPUs to compute the confidence intervals via \code{snow}. \cr\cr
 \code{...} allows the user to pass lavaan arguments to the model fitting procedure. Options include multigroup, repeated measures, growth curve, and multilevel models.
 }
@@ -70,7 +70,6 @@ model3 <- "F1 =~ NA*a1 + a2 + a3 + 0.8*a4 + a5
            F2 =~ b1 + start(0.8)*b2 + b3 + equal('F2 =~ b2')*b4 + b5
            F1 ~~ 0*F2"
 
-
 ## function call
 out <- ezCutoffs(model = model1, n_obs = 1000, n_rep = 10, n_cores = 1)
 \donttest{
@@ -79,7 +78,6 @@ out <- ezCutoffs(
   estimator = "MLM", group = "group", group.equal = c("loadings", "intercepts"), n_cores = 1
 )
 }
-
 
 ## retrieve output
 summary(out)
