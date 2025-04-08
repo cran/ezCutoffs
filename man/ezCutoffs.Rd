@@ -33,7 +33,7 @@ ezCutoffs(model = NULL, data = NULL, n_obs = NULL, n_rep = 1000,
 
 \item{boot_alpha}{Type I-error rate choosen for the boostrap-confidence interval: Between 0 and 1; 0.05 per default.}
 
-\item{boot_internal}{Whether to use the internal boostrap implemented in \code{bootstrapLavaan} or a standard implementation in the \link{boot} package. Defaults to \code{FALSE}}
+\item{boot_internal}{Whether to use the internal boostrap implemented in \code{bootstrapLavaan} or a standard implementation in the \link[boot]{boot} package. Defaults to \code{FALSE}}
 
 \item{n_cores}{The number of cores to use. If \code{NULL} (the default) all available cores will be used.}
 

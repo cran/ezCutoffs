@@ -1,3 +1,9 @@
+### ezCutoffs 1.0.2
+<ul>
+  <li>Rectified Rd Cross-References Issue</li>
+  <li>Rectified LazyData Issue in DESCRIPTION file/li>
+</ul>
+
 ### ezCutoffs 1.0.1
 
 <ul>

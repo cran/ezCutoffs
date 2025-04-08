@@ -16,7 +16,7 @@
 #' @param bootstrapped_ci Specify whether a boostrapped confidence interval for the empirical model fit statistics should be drawn; default = FALSE.
 #' @param n_boot Number of replications in bootstrap for confidence intervalls for empirical model fit statistics.
 #' @param boot_alpha Type I-error rate choosen for the boostrap-confidence interval: Between 0 and 1; 0.05 per default.
-#' @param boot_internal Whether to use the internal boostrap implemented in \code{bootstrapLavaan} or a standard implementation in the \link{boot} package. Defaults to \code{FALSE}
+#' @param boot_internal Whether to use the internal boostrap implemented in \code{bootstrapLavaan} or a standard implementation in the \link[boot]{boot} package. Defaults to \code{FALSE}
 #' @param n_cores The number of cores to use. If \code{NULL} (the default) all available cores will be used.
 #' @param ...	Additional arguments to pass to \link[lavaan]{lavaan}.
 #'
